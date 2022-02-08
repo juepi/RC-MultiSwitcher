@@ -7,14 +7,18 @@
 #include "generic-config.h"
 #include "common-functions.h"
 #include "servo_decoder.h"
+#ifdef NANO_BOARD // board-specific Servo library selection
 #include <Servo.h>
+#else
+#include <PWMServo.h>
+#endif // Servo library selection
 
 // Variables to store Servo Positions and stati
 // 0 to 180° for OUTPUTS
 short SOUT0pos = 0;
 short SOUT1pos = 0;
 short SOUT2pos = 0;
-// -120% to +120% for INPUTS
+// -100% to +100% or 0-180° for INPUTS
 short SIN0pos = 0;
 short SIN1pos = 0;
 // will be set to TRUE if servo positions decoded within SRV_TIMEOUT
@@ -54,12 +58,12 @@ void loop()
   // Handle new signals from INPUT Servos
   if (b_SIN0_newPos)
   {
-    SIN0pos = Servo_PWM_to_Pct(SIN0_uS, DEFAULT_DEAD_ZONE);
+    SIN0pos = Servo_PWM_to_Deg(SIN0_uS,SIN0pos);
     b_SIN0_newPos = false;
   }
   if (b_SIN1_newPos)
   {
-    SIN1pos = Servo_PWM_to_Pct(SIN1_uS, DEFAULT_DEAD_ZONE);
+    SIN1pos = Servo_PWM_to_Deg(SIN1_uS,SIN1pos);
     b_SIN1_newPos = false;
   }
 
@@ -82,7 +86,8 @@ void loop()
   }
 
   // Copy IN0 to OUT0 for testing
-  SOUT0pos = (short)map(SIN0pos, -100, 100, 0, 180); // map from +/-100% to 0..180° for Servo library
+  //SOUT0pos = (short)map(SIN0pos, -100, 100, 0, 180); // map from +/-100% to 0..180° for Servo library
+  SOUT0pos = SIN0pos; //SIN0pos mapped to 0..180°, so we can just copy it
 
   // Write to OUTPUT Servos only once within SRVOUT_REFRESH
   if (millis() - SrvOut_last_refresh >= SRVOUT_REFRESH)

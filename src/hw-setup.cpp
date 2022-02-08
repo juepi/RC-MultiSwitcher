@@ -5,12 +5,22 @@
 #include "hardware-config.h"
 #include "generic-config.h"
 #include "servo_decoder.h"
+#ifdef NANO_BOARD // board-specific Servo library selection
 #include <Servo.h>
+#else
+#include <PWMServo.h>
+#endif // Servo library selection
 
-// Create Servo objects for OUTPUT Servos
+// Create Servo objects for OUTPUT Servos (board specific)
+#ifdef NANO_BOARD
 Servo ServOut0;
 Servo ServOut1;
 Servo ServOut2;
+#else
+PWMServo ServOut0;
+PWMServo ServOut1;
+PWMServo ServOut2;
+#endif
 
 void hw_setup()
 {
@@ -34,8 +44,8 @@ void hw_setup()
 
     // Attach OUTPUT Servos
     ServOut0.attach(SOUT0);
-    ServOut1.attach(SOUT1);
-    ServOut2.attach(SOUT2);
+    //ServOut1.attach(SOUT1);
+    //ServOut2.attach(SOUT2);
 
     //Setup interrupts for servo Inputs
     attachInterrupt(digitalPinToInterrupt(SIN0), ISR_SIN0, CHANGE);

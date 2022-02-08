@@ -61,7 +61,7 @@ void ISR_SIN1()
     }
 }
 
-short Servo_PWM_to_Pct(unsigned int PWMlength, byte DeadZone)
+short Servo_PWM_to_Pct(unsigned int PWMlength, short OldPctVal, byte DeadZone)
 {
     short Percent_Pos = 0;
     unsigned short Neutral = SRV_CENTER; //just to avoid compiler warning
@@ -77,5 +77,34 @@ short Servo_PWM_to_Pct(unsigned int PWMlength, byte DeadZone)
     {
         Percent_Pos = 0; //Servo Neutral within dead zone
     }
-    return Percent_Pos;
+    if (abs(Percent_Pos - OldPctVal) >= JITTER)
+    {
+        return Percent_Pos;
+    }
+    // Jitter detected, return old value
+    return OldPctVal;
+}
+
+short Servo_PWM_to_Deg(unsigned int PWMlength, short OldDegVal)
+{
+    short Deg_Pos = 0;
+    unsigned short Neutral = SRV_CENTER; //just to avoid compiler warning
+    if (PWMlength > Neutral)
+    {
+        Deg_Pos = map(PWMlength, SRV_CENTER, SRV_MAX, 91, 180); // 91 - 180°
+    }
+    else if (PWMlength < Neutral)
+    {
+        Deg_Pos = map(PWMlength, SRV_MIN, SRV_CENTER, 0, 89); // 0 - 89°
+    }
+    else
+    {
+        Deg_Pos = 90; //Servo Neutral 90°
+    }
+    if (abs(Deg_Pos - OldDegVal) >= JITTER)
+    {
+        return Deg_Pos;
+    }
+    // Jitter detected, return old value
+    return OldDegVal;
 }

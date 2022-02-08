@@ -7,8 +7,8 @@
 #include <Arduino.h>
 
 // Firmware Information
-#define FIRMWARE_NAME "RC-Multiswitcher for Nano 3.0"
-#define FIRMWARE_VERSION "1.0.0"
+#define FIRMWARE_NAME "RC-Multiswitcher"
+#define FIRMWARE_VERSION "1.0.1"
 
 // Serial Output configuration
 #define BAUD_RATE 115200
