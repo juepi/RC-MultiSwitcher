@@ -22,9 +22,10 @@ extern PWMServo ServOut1;
 extern PWMServo ServOut2;
 #endif
 
-// refresh time for Servo OUTPUT ins ms
+// refresh time for Servo OUTPUTS ins ms
 #define SRVOUT_REFRESH 40
 
+// Define PINS to use for each in- and output
 #ifdef NANO_BOARD
 #define LED 13
 // LED is active low
@@ -40,7 +41,7 @@ extern PWMServo ServOut2;
 #define SOUT1 10
 #define SOUT2 11
 
-// Switching Outputs (for LEDs etc.)
+// Switched Outputs (for LEDs etc.)
 #define SW0 14
 #define SW1 15
 #define SW2 16
@@ -58,19 +59,25 @@ extern PWMServo ServOut2;
 // Servo INPUTS
 #define SIN0 7
 #define SIN1 8
+// Additional Servo inputs, currently unsused but prepared in hardware
+#define SIN2 11
+#define SIN3 12
 
 // Servo OUTPUTS
 #define SOUT0 20
 #define SOUT1 21
+// Additional Servo outputs, currently unused but prepared in hardware
 #define SOUT2 22
+#define SOUT3 23
 
-// Switching Outputs (for LEDs etc.)
-#define SW0 14
-#define SW1 15
-#define SW2 16
-#define SW3 17
-#define SW4 18
-#define SW5 19
+// Switched Outputs (N-channel MOSFETs sum current 5A -> polyfuse -> watch out for your BEC!)
+// All of these pins support PWM!
+#define SW0 3
+#define SW1 4
+#define SW2 5
+#define SW3 6
+#define SW4 9
+#define SW5 10
 #endif //T31_BOARD
 
 // Hardware setup function

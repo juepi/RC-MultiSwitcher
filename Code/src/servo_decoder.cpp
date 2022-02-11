@@ -67,11 +67,11 @@ short Servo_PWM_to_Pct(unsigned int PWMlength, short OldPctVal, byte DeadZone)
     unsigned short Neutral = SRV_CENTER; //just to avoid compiler warning
     if (PWMlength >= (Neutral + DeadZone))
     {
-        Percent_Pos = map(PWMlength, SRV_CENTER, SRV_MAX, 0, 120); // 0% - 120%
+        Percent_Pos = map(PWMlength, SRV_CENTER, SRV_MAX, 0, 100); // 0% - 100%
     }
     else if (PWMlength <= (Neutral - DeadZone))
     {
-        Percent_Pos = map(PWMlength, SRV_MIN, SRV_CENTER, -120, 0); // -120% - 0%
+        Percent_Pos = map(PWMlength, SRV_MIN, SRV_CENTER, -100, 0); // -100% - 0%
     }
     else
     {

@@ -11,9 +11,14 @@ If you choose a different microcontroller, my recommendation is to make sure tha
 ## Status
 This is work in progress, the current code is a POC on decoding the 2 RC channels along with servo output. Still much work to do adding the functionality i want and also a PCB to hook things up to.  
 Some documentation available in comments which should help you get things up and running.  
-**Update 2022-02-08:** Implemented support for Teensy 3.1/3.2 boards, Servo output jitter is history now!
+**Update 2022-02-08:** Implemented support for Teensy 3.1/3.2 boards, Servo output signal jitter is history now!
 
 ## Changelog
+
+### v1.0.2
+- declared additional Servo in- and output pins to match hardware
+- removed "low power" switched outputs -> only using MOSFET driven outputs
+
 ### v1.0.1
 - Added Support for Teensy 3.1/3.2
 - Added decoding function from Pulse-width to degrees (as an alternative to +/- 100%)
