@@ -11,7 +11,7 @@ If you choose a different microcontroller, my recommendation is to make sure tha
 ## Status
 This is work in progress, the current code is a POC on decoding the 2 RC channels along with servo output. Still much work to do adding the functionality i want and also a PCB to hook things up to.  
 Some documentation available in comments which should help you get things up and running.  
-**Update 2022-02-08:** Implemented support for Teensy 3.1/3.2 boards, Servo output jitter is history now!
+**Update 2022-02-08:** Implemented support for Teensy 3.1/3.2 boards, Servo output jitter is history now!  
 **Update 2022-02-11:** Added KiCAD project with schematic and layout for Teensy 3.1+ based MCU. KiCAD project is finished so far, will add gerber data as soon as i've finished the first order at JLCPCB.
   
   
