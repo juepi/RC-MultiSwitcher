@@ -1,4 +1,5 @@
 *-cache
 *-table
 *auto_saved_files*
+*.bak
 *-backups/

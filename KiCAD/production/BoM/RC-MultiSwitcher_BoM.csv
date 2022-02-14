@@ -1,0 +1,7 @@
+Comment,Designator,Footprint,LCSC part number
+"470nF/50V","C1","Capacitor_SMD:C_0603_1608Metric","C77572"
+"100µF/16V","C2","Capacitor_Tantalum_SMD:CP_EIA-7343-31_Kemet-D","C171666"
+"16V/5A","F1","Fuse:Fuse_1812_4532Metric","C55996"
+"LM2940IMP-5.0_NOPB","IC1","Proj-Footprints:SOT230P700X180-4N","C13991"
+"DMG9926USD-13","Q1,Q2,Q3","Proj-Footprints:SOIC127P600X175-8N","C154896"
+"10k","R1,R2,R3,R4,R9,R10,R11,R12,R13,R14","Resistor_SMD:R_0402_1005Metric","C25744"
