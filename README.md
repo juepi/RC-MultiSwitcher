@@ -16,8 +16,8 @@ Some documentation available in comments which should help you get things up and
 **Update 2022-02-14:** KiCAD project finished after some minor layout improvements. Added gerber, drilling, placement files as well as BoM in "production" subfolder.  
 
 ## Usage
-![Bottom side of the PCB](https://github.com/juepi/RC-MultiSwitcher/images/blob/main/RC-MultiSwitcher_v1.0_top.jpg?raw=true)
-![Servo Connector](https://github.com/juepi/RC-MultiSwitcher/images/blob/main/RC-MultiSwitcher_v1.0_bottom.jpg?raw=true)
+![Bottom side of the PCB](https://github.com/juepi/RC-MultiSwitcher/blob/main/images/RC-MultiSwitcher_v1.0_top.jpg?raw=true)
+![Servo Connector](https://github.com/juepi/RC-MultiSwitcher/blob/main/images/RC-MultiSwitcher_v1.0_bottom.jpg?raw=true)
   
   
 have fun,  
