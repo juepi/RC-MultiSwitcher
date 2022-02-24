@@ -11,12 +11,13 @@ The [KiCAD Teensy libraries](https://github.com/XenGi/teensy_library) have been 
 Schematic and layout finished, manufacturing data for [jlcpcb.com](https://jlcpcb.com/) added in "production" subfolder. 
 
 ## Changelog
-###v1.1
+
+### v1.1
 - Added optional JST XH 2pin Power Input connector
 - Added possibility to short circuit polyfuse with solder jumper on bottom side (use at your own risk!)
 - updated manufacturing data
 
-###v1.0
+### v1.0
 - Minor layout improvements
 - changed C1 to different part with lower MOQ
 - published manufacturing data
