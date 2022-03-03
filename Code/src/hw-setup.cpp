@@ -54,6 +54,15 @@ void hw_setup()
     pinMode(SW5, OUTPUT);
     digitalWrite(SW5, LOW);
 
+#ifdef PWM_HZ
+    analogWriteFrequency(SW0, PWM_HZ);
+    analogWriteFrequency(SW1, PWM_HZ);
+    analogWriteFrequency(SW2, PWM_HZ);
+    analogWriteFrequency(SW3, PWM_HZ);
+    analogWriteFrequency(SW4, PWM_HZ);
+    analogWriteFrequency(SW5, PWM_HZ);
+#endif
+    
     // Attach OUTPUT Servos
     ServOut0.attach(SOUT0);
     ServOut1.attach(SOUT1);

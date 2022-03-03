@@ -78,11 +78,14 @@ extern PWMServo ServOut2;
 #define SW3 6
 #define SW4 9
 #define SW5 10
+
+//PWM Frequency for Switched Outputs (optional, defaults to 488Hz for Teensy 3.1)
+//#define PWM_HZ 1000
 #endif //T31_BOARD
 
-// 2D Array for switched Outputs (0..100% -> PWM!)
+// 2D Array for switched Outputs
 // First Row: PIN of switch Element 0 = SW0, Element 1 =SW1 ...
-// Second Row: OUTPUT-State of switch
+// Second Row: OUTPUT-State of switch (0..100% -> PWM!)
 extern short Switches[6][2];
 
 // Create some human readable Switch Aliases
