@@ -23,7 +23,7 @@ extern PWMServo ServOut2;
 #endif
 
 // refresh time for Servo OUTPUTS ins ms
-#define SRVOUT_REFRESH 40
+#define OUTPUT_REFRESH 40
 
 // Define PINS to use for each in- and output
 #ifdef NANO_BOARD
@@ -79,6 +79,42 @@ extern PWMServo ServOut2;
 #define SW4 9
 #define SW5 10
 #endif //T31_BOARD
+
+// 2D Array for switched Outputs (0..100% -> PWM!)
+// First Row: PIN of switch Element 0 = SW0, Element 1 =SW1 ...
+// Second Row: OUTPUT-State of switch
+extern short Switches[6][2];
+
+// Create some human readable Switch Aliases
+#define HEADLIGHTS 0
+#define BLUELAMP 1
+#define PUMP 5
+#define SW_PIN 0
+#define SW_STATE 1
+
+// Array for desired Servo OUTPUT Positions (0..180°)
+// Usage: Element 0 = SOUT0, Element 1 = SOUT1 ...
+// we currently use 2 out of 4 servo outputs
+extern short SOUT_POS[2];
+
+// Create some human readable Servo Output Aliases
+#define SIRENE 0
+#define WINCH 1
+
+// 2D Array for measured Servo INPUT Positions (0..180° or -100%..100%)
+// First row: measured servo position; second row: servo signal status (0=SignalInvalid;1=Degrees;2=Percent)? -> SignalInvalid is set if input is not updated within SRV_TIMEOUT
+// Usage: Element 0 = SIN0, Element 1 = SIN1 ...
+// we currently use 2 out of 4 servo inputs
+extern short SIN_POS[2][2];
+
+// Create some human readable Servo Input Aliases
+#define RX_CH5 0
+#define RX_CH6 1
+#define POS 0
+#define STAT 1
+#define STAT_ERR 0
+#define STAT_DEG 1
+#define STAT_PCT 2
 
 // Hardware setup function
 extern void hw_setup();

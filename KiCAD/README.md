@@ -16,6 +16,7 @@ Schematic and layout finished, manufacturing data for [jlcpcb.com](https://jlcpc
 - Added optional JST XH 2pin Power Input connector
 - Added possibility to short circuit polyfuse with solder jumper on bottom side (use at your own risk!)
 - updated manufacturing data
+- Updated Net names of Switched Outputs to match code (SW0..SW5)
 
 ### v1.0
 - Minor layout improvements

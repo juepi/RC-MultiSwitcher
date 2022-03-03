@@ -15,13 +15,25 @@
 #ifdef NANO_BOARD
 Servo ServOut0;
 Servo ServOut1;
-Servo ServOut2;
+//Servo ServOut2;
 #else
 PWMServo ServOut0;
 PWMServo ServOut1;
-PWMServo ServOut2;
+//PWMServo ServOut2;
 #endif
 
+// Initialize Switched Output Array
+short Switches[6][2] = {{SW0,0},{SW1,0},{SW2,0},{SW3,0},{SW4,0},{SW5,0}};
+
+// Initialize Servo Arrays
+// OUTPUTS centered by default
+short SOUT_POS[2] = {90,90};
+
+// INPUTS set to invalid by default
+short SIN_POS[2][2] = {{0,0},{0,0}};
+
+
+// Hardware Setup function (called in setup loop)
 void hw_setup()
 {
     // configure digital Outputs (Switches)
@@ -44,7 +56,7 @@ void hw_setup()
 
     // Attach OUTPUT Servos
     ServOut0.attach(SOUT0);
-    //ServOut1.attach(SOUT1);
+    ServOut1.attach(SOUT1);
     //ServOut2.attach(SOUT2);
 
     //Setup interrupts for servo Inputs

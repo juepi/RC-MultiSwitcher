@@ -403,8 +403,7 @@
           "/SW2",
           "/SW3",
           "/SW4",
-          "/SW5",
-          "/SW6"
+          "/SW5"
         ],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
