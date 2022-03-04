@@ -70,30 +70,26 @@ void loop()
     SIN_POS[RX_CH6][STAT] = 0; // SIN1 invalid!
   }
 
-  // Copy position of RX_CH5 to SOUT0 for testing (if we have a valid signal)
-  if (SIN_POS[RX_CH5][STAT] == 1)
-  {
-    SOUT_POS[0] = SIN_POS[RX_CH5][POS]; // RX_CH5 mapped to 0..180°, so we can just copy it
-  }
-
   // Write stati to Servo and switched Outputs only once within OUTPUT_REFRESH
   if (millis() - Out_last_refresh >= OUTPUT_REFRESH)
   {
     Out_last_refresh += OUTPUT_REFRESH;
-    // Set OUTPUT Servo Positions
-    ServOut0.write(SOUT_POS[SIRENE]);
-    ServOut1.write(SOUT_POS[WINCH]);
+    // Set OUTPUT Servo Position
+    ServOut0.write(SOUT_POS[WINCH]);
 
     // Set switched output states
-    // Note: These are PWM Outputs! 0% (0) = Always Off; 100% (256) = Always On
-    // Anything between will result in PWM (50% = 128 = 50% duty cycle)
+    // Note: These are PWM Outputs with 12bit resolution! 0% (0) = Always Off; 100% (4096) = Always On
+    // Anything between will result in PWM
+    // ATTN: keep in mind that Sw2-SW5 share the FTM0 timer with the Servo outputs --> fixed at 50Hz
+    // SW0 and SW1 (FTM1 timer) frequency might be changed in hardware-config.h
     for (int i = 0; i <= 5; i++)
     {
-      analogWrite(Switches[i][SW_PIN], map(Switches[i][SW_STATE], 0, 100, 0, 256));
+      analogWrite(Switches[i][SW_PIN], map(Switches[i][SW_STATE], 0, 100, 0, 4096));
     }
 
     // Debug output (added here to avoid too much load on the serial port):
-    DEBUG_PRINTLN("SIN0/CH5:\t" + String(SIN_POS[RX_CH5][POS]) + "\t\t SIN1/CH6:\t" + String(SIN_POS[RX_CH6][POS]) + "\t\t SOUT0:\t" + String(SOUT_POS[0]));
+    DEBUG_PRINT("SIN0/CH5:\t" + String(SIN_POS[RX_CH5][POS]) + "\t\t SIN1/CH6:\t" + String(SIN_POS[RX_CH6][POS]) + "\t\t SOUT0:\t" + String(SOUT_POS[0]));
+    DEBUG_PRINTLN("\t   SW0: " + String(Switches[0][SW_STATE]) + "  SW1: " + String(Switches[1][SW_STATE]) + "  SW2: " + String(Switches[2][SW_STATE]) + "  SW3: " + String(Switches[3][SW_STATE]) + "  SW4: " + String(Switches[4][SW_STATE]) + "  SW5: " + String(Switches[5][SW_STATE]));
   }
 
 #ifdef ONBOARD_LED

@@ -14,20 +14,18 @@
 // Create Servo objects for OUTPUT Servos (board specific)
 #ifdef NANO_BOARD
 Servo ServOut0;
-Servo ServOut1;
-//Servo ServOut2;
+//Servo ServOut1;
 #else
 PWMServo ServOut0;
-PWMServo ServOut1;
-//PWMServo ServOut2;
+//PWMServo ServOut1;
 #endif
 
 // Initialize Switched Output Array
 short Switches[6][2] = {{SW0,0},{SW1,0},{SW2,0},{SW3,0},{SW4,0},{SW5,0}};
 
 // Initialize Servo Arrays
-// OUTPUTS centered by default
-short SOUT_POS[2] = {90,90};
+// OUTPUTS centered/neutral by default
+short SOUT_POS[1] = {90};
 
 // INPUTS set to invalid by default
 short SIN_POS[2][2] = {{0,0},{0,0}};
@@ -54,19 +52,13 @@ void hw_setup()
     pinMode(SW5, OUTPUT);
     digitalWrite(SW5, LOW);
 
-#ifdef PWM_HZ
-    analogWriteFrequency(SW0, PWM_HZ);
-    analogWriteFrequency(SW1, PWM_HZ);
-    analogWriteFrequency(SW2, PWM_HZ);
-    analogWriteFrequency(SW3, PWM_HZ);
-    analogWriteFrequency(SW4, PWM_HZ);
-    analogWriteFrequency(SW5, PWM_HZ);
+#ifdef FTM1_FREQ
+    analogWriteFrequency(FTM1_PIN, FTM1_FREQ);
 #endif
-    
+
     // Attach OUTPUT Servos
     ServOut0.attach(SOUT0);
-    ServOut1.attach(SOUT1);
-    //ServOut2.attach(SOUT2);
+    //ServOut1.attach(SOUT1);
 
     //Setup interrupts for servo Inputs
     attachInterrupt(digitalPinToInterrupt(SIN0), ISR_SIN0, CHANGE);

@@ -59,28 +59,29 @@ extern PWMServo ServOut2;
 // Servo INPUTS
 #define SIN0 7
 #define SIN1 8
-// Additional Servo inputs, currently unsused but prepared in hardware
 #define SIN2 11
 #define SIN3 12
 
 // Servo OUTPUTS
+// These Pins use Timer FTM0 set to 50Hz @ 12bit resolution by PWMServo library! Do not change!
 #define SOUT0 20
 #define SOUT1 21
-// Additional Servo outputs, currently unused but prepared in hardware
 #define SOUT2 22
 #define SOUT3 23
 
 // Switched Outputs (N-channel MOSFETs sum current 5A -> polyfuse -> watch out for your BEC!)
-// All of these pins support PWM!
-#define SW0 3
-#define SW1 4
-#define SW2 5
-#define SW3 6
-#define SW4 9
-#define SW5 10
+// All of these pins support PWM! Resolution is 12bit for all PWM pins (->PWMServo)
+#define SW0 3 //FTM1 Timer
+#define SW1 4 //FTM1 Timer
+#define SW2 5 //FTM0 Timer!
+#define SW3 6 // FTM0 Timer!
+#define SW4 9 // FTM0 Timer!
+#define SW5 10 // FTM0 Timer!
 
-//PWM Frequency for Switched Outputs (optional, defaults to 488Hz for Teensy 3.1)
-//#define PWM_HZ 1000
+// PWM Frequency for Switched Outputs SW0 and SW1 (optional, defaults to 488Hz for Teensy 3.1)
+// NOTE: Only change for FTM1! Resolution is 12bit for all PWM pins (->PWMServo)
+//#define FTM1_FREQ 1000
+#define FTM1_PIN SW0
 #endif //T31_BOARD
 
 // 2D Array for switched Outputs
@@ -91,18 +92,18 @@ extern short Switches[6][2];
 // Create some human readable Switch Aliases
 #define HEADLIGHTS 0
 #define BLUELAMP 1
+#define SIRENE 2
 #define PUMP 5
 #define SW_PIN 0
 #define SW_STATE 1
 
 // Array for desired Servo OUTPUT Positions (0..180°)
 // Usage: Element 0 = SOUT0, Element 1 = SOUT1 ...
-// we currently use 2 out of 4 servo outputs
-extern short SOUT_POS[2];
+// we currently use 1 out of 4 servo outputs
+extern short SOUT_POS[1];
 
 // Create some human readable Servo Output Aliases
-#define SIRENE 0
-#define WINCH 1
+#define WINCH 0
 
 // 2D Array for measured Servo INPUT Positions (0..180° or -100%..100%)
 // First row: measured servo position; second row: servo signal status (0=SignalInvalid;1=Degrees;2=Percent)? -> SignalInvalid is set if input is not updated within SRV_TIMEOUT

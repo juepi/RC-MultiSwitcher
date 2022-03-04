@@ -15,7 +15,7 @@ Some documentation available in comments which should help you get things up and
 **Update 2022-02-11:** Added KiCAD project with schematic and layout for Teensy 3.1+ based MCU. KiCAD project is finished so far, will add gerber data as soon as i've finished the first order at JLCPCB.  
 **Update 2022-02-14:** KiCAD project finished after some minor layout improvements. Added gerber, drilling, placement files as well as BoM in "production" subfolder.  
 **Update 2022-02-24:** Implemented minor changes on PCB (v1.1): added possibility to provide power via 2pin JST XH plug; added solder-pad to short-circuit fuse (use with caution!); updated manufacturing files  
-
+**Updated 2022-03-04:** Ordered PCB just arrived (v1.0) and works perfectly well! Not yet tested: high power load and PWM output on MOSFET switches.  
 
 ## Usage
 ![Bottom side of the PCB](https://github.com/juepi/RC-MultiSwitcher/blob/main/images/RC-MultiSwitcher_v1.0_top.jpg?raw=true)

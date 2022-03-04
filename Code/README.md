@@ -2,7 +2,7 @@
 PlatformIO based project to handle several RC (PWM) Servo In- and outputs as well as switched Outputs for LEDs and other loads.
 
 ## Purpose
-My intention for this project was to be able to use a single RC channel for multiple purposes, like switching headlights, flashing lights, siren etc on my RC model. To be more flexible, 2 RC channels can be decoded (simultaneously), whilst 3 PWM output channels have been added along with some digital outputs.
+My intention for this project was to be able to use a single RC channel for multiple purposes, like switching headlights, flashing lights, sirene etc on my RC model. To be more flexible, 2 RC channels can be decoded (simultaneously), whilst 3 PWM output channels have been added along with some digital outputs.
 
 ## Requirements
 Whilst the program (POC) has been tested and runs on an Nano 3.0 clone, you may want to use something stronger like a [Teensy 3.1+ board](https://www.pjrc.com/teensy/teensy31.html) for this. The Nano causes some jitter on the servo outputs, i assume due to the interrupts used to measure the PWM signal of the 2 servo input channels interfering with the servo library code.  
@@ -13,13 +13,20 @@ If you choose a different microcontroller, my recommendation is to make sure tha
 Some documentation available in comments which should help you get things up and running.  
 **Update 2022-02-08:** Implemented support for Teensy 3.1/3.2 boards, Servo output signal jitter is history now!  
 **Updated 2022-03-03:** Code is pretty finished now with v1.1.0. It compiles, but is not yet tested as my PCBs have not yet arrived.
+**Updated 2022-03-04:** PCB arrived, code tested and some bugs fixed. Code works now as expected.
 
 ## Changelog
 
+### v1.1.1
+- Fixed some copy/paste errors
+- Adopted in/out-processing for new sirene (does not require Servo output)
+- Changed `analogWrite` handling of Switched outputs; PWMServo library sets PWM to 12bit resolution (system wide)
+- optionally set PWM frequency for SW0 and SW1 (FTM1 timer) in `hardware-config.h`
+
 ### v1.1.0
-- Implemented functions for processing outputs according to servo input positions (in-out_processing.*)
+- Implemented functions for processing outputs according to servo input positions (`in-out_processing.*`)
 - Implemented switching MOSFET (PWM) outputs
-- Added aliases (#defines) for In- and Outputs to make code easier to read (hardware-config.h)
+- Added aliases (#defines) for In- and Outputs to make code easier to read (`hardware-config.h`)
 
 ### v1.0.2
 - declared additional Servo in- and output pins to match hardware
