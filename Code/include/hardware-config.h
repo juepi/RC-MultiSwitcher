@@ -90,10 +90,10 @@ extern PWMServo ServOut2;
 extern short Switches[6][2];
 
 // Create some human readable Switch Aliases
-#define HEADLIGHTS 0
-#define BLUELAMP 1
-#define SIRENE 2
-#define PUMP 5
+#define PUMP 0
+#define HEADLIGHTS 1
+#define BLUELAMP 2
+#define SIRENE 3
 #define SW_PIN 0
 #define SW_STATE 1
 
