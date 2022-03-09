@@ -69,7 +69,7 @@ void Process_RX_CH5()
         Switches[HEADLIGHTS][SW_STATE] = 0;
         Switches[BLUELAMP][SW_STATE] = 0;
         Switches[PUMP][SW_STATE] = 0;
-        SOUT_POS[SIRENE] = 90;
+        Switches[SIRENE][SW_STATE] = 0;
     }
 }
 

@@ -52,6 +52,11 @@ void hw_setup()
     pinMode(SW5, OUTPUT);
     digitalWrite(SW5, LOW);
 
+#ifdef SW_TESTING
+    // for manually testing SW* outputs
+    pinMode(SIN3,INPUT_PULLUP);
+#endif
+
 #ifdef FTM1_FREQ
     analogWriteFrequency(FTM1_PIN, FTM1_FREQ);
 #endif

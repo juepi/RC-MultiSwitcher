@@ -84,6 +84,24 @@ void loop()
     // SW0 and SW1 (FTM1 timer) frequency might be changed in hardware-config.h
     for (int i = 0; i <= 5; i++)
     {
+#ifdef SW_TESTING
+      // SW_TESTING Mode (enable in platformio.ini)
+      // SIN3 is configured as INPUT_PULLUP, thus all SW* outputs are ENABLED by default unless SIN3 is pulled to GND
+      if (digitalRead(SIN3))
+      {
+        // Enable all SW Outputs if SIN3 = HIGH (default)
+        Switches[i][SW_STATE] = 100;
+      }
+      else
+      {
+        // If SIN3 is pulled low, map RX_CH5 status to every SW Output (PWM Testing)
+        if (SIN_POS[RX_CH5][STAT] == 1)
+        {
+          Switches[i][SW_STATE] = map(SIN_POS[RX_CH5][POS], 0, 180, 0, 100);
+        }
+      }
+#endif
+      // Set SW output states
       analogWrite(Switches[i][SW_PIN], map(Switches[i][SW_STATE], 0, 100, 0, 4096));
     }
 
