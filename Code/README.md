@@ -13,7 +13,7 @@ If you choose a different microcontroller, my recommendation is to make sure tha
 Some documentation available in comments which should help you get things up and running.  
 **Update 2022-02-08:** Implemented support for Teensy 3.1/3.2 boards, Servo output signal jitter is history now!  
 **Updated 2022-03-03:** Code is pretty finished now with v1.1.0. It compiles, but is not yet tested as my PCBs have not yet arrived.  
-**Updated 2022-03-04:** PCB arrived, code tested and some bugs fixed. Code works now as expected.
+**Updated 2022-03-04:** PCB arrived, code tested and some bugs fixed. Code works now as expected.  
 **Updated 2022-03-09:** Added testing mode for MOSFET outputs which can be enabled in `platformio.ini` (see `main.cpp`for details)
 
 ## Changelog
