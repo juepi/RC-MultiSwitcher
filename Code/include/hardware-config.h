@@ -1,6 +1,6 @@
 /*
-*   Hardware / Board specific Settings
-*/
+ *   Hardware / Board specific Settings
+ */
 #ifndef HARDWARE_CONFIG_H
 #define HARDWARE_CONFIG_H
 
@@ -9,6 +9,9 @@
 #include <Servo.h>
 #else
 #include <PWMServo.h>
+#ifdef IBUS
+#include "iBUS.h"
+#endif
 #endif // Servo library selection
 
 // Declaration of Servo OUTPUT objects (board specific)
@@ -48,13 +51,12 @@ extern PWMServo ServOut2;
 #define SW3 17
 #define SW4 18
 #define SW5 19
-#endif //NANO_BOARD
+#endif // NANO_BOARD
 
 #ifdef T31_BOARD
 #define LED 13
-// LED is active low
-#define LEDON LOW
-#define LEDOFF HIGH
+#define LEDON HIGH
+#define LEDOFF LOW
 
 // Servo INPUTS
 #define SIN0 7
@@ -71,18 +73,19 @@ extern PWMServo ServOut2;
 
 // Switched Outputs (N-channel MOSFETs sum current 5A -> polyfuse -> watch out for your BEC!)
 // All of these pins support PWM! Resolution is 12bit for all PWM pins (->PWMServo)
-#define SW0 3 //FTM1 Timer
-#define SW1 4 //FTM1 Timer
-#define SW2 5 //FTM0 Timer!
-#define SW3 6 // FTM0 Timer!
-#define SW4 9 // FTM0 Timer!
+#define SW0 3  // FTM1 Timer
+#define SW1 4  // FTM1 Timer
+#define SW2 5  // FTM0 Timer!
+#define SW3 6  // FTM0 Timer!
+#define SW4 9  // FTM0 Timer!
 #define SW5 10 // FTM0 Timer!
 
 // PWM Frequency for Switched Outputs SW0 and SW1 (optional, defaults to 488Hz for Teensy 3.1)
 // NOTE: Only change for FTM1! Resolution is 12bit for all PWM pins (->PWMServo)
-//#define FTM1_FREQ 1000
+// see documentation: https://www.pjrc.com/teensy/td_pulse.html
+#define FTM1_FREQ 8789.062
 #define FTM1_PIN SW0
-#endif //T31_BOARD
+#endif // T31_BOARD
 
 // 2D Array for switched Outputs
 // First Row: PIN of switch Element 0 = SW0, Element 1 =SW1 ...
@@ -123,4 +126,4 @@ extern short SIN_POS[2][2];
 // Hardware setup function
 extern void hw_setup();
 
-#endif //HARDWARE_CONFIG_H
+#endif // HARDWARE_CONFIG_H

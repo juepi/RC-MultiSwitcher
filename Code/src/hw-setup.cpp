@@ -1,5 +1,5 @@
 /*
- * Common Functions
+ * Hardware Setup Functions
  */
 #include <Arduino.h>
 #include "hardware-config.h"
@@ -9,6 +9,9 @@
 #include <Servo.h>
 #else
 #include <PWMServo.h>
+#ifdef IBUS
+#include "iBUS.h"
+#endif
 #endif // Servo library selection
 
 // Create Servo objects for OUTPUT Servos (board specific)
@@ -30,14 +33,13 @@ short SOUT_POS[1] = {90};
 // INPUTS set to invalid by default
 short SIN_POS[2][2] = {{0,0},{0,0}};
 
-
 // Hardware Setup function (called in setup loop)
 void hw_setup()
 {
     // configure digital Outputs (Switches)
 #ifdef ONBOARD_LED
     pinMode(LED, OUTPUT);
-    digitalWrite(LED, LEDOFF);
+    digitalWrite(LED, LOW);
 #endif
     pinMode(SW0, OUTPUT);
     digitalWrite(SW0, LOW);
@@ -54,7 +56,10 @@ void hw_setup()
 
 #ifdef SW_TESTING
     // for manually testing SW* outputs
-    pinMode(SIN3,INPUT_PULLUP);
+    pinMode(SIN3,INPUT);
+    //SOUT3 set HIGH, can be used as 3V3 source for SIN3
+    pinMode(SOUT3,OUTPUT);
+    digitalWrite(SOUT3, HIGH);
 #endif
 
 #ifdef FTM1_FREQ
@@ -66,10 +71,18 @@ void hw_setup()
     //ServOut1.attach(SOUT1);
 
     //Setup interrupts for servo Inputs
+#ifndef IBUS
     attachInterrupt(digitalPinToInterrupt(SIN0), ISR_SIN0, CHANGE);
     attachInterrupt(digitalPinToInterrupt(SIN1), ISR_SIN1, CHANGE);
+#else
+    IBUS_SERIAL.begin(IBUS_BPS);
+    while(!IBUS_SERIAL)
+    {
+        delay(10);
+    }
+#endif
 
-    // start serial port and digital Outputs
+    // start serial port for debugging
 #ifdef SERIAL_OUT
     Serial.begin(BAUD_RATE);
 #endif

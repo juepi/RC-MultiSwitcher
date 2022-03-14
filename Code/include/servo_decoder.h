@@ -22,14 +22,17 @@
 #define JITTER 2
 
 // Interrupt Service routines
+#ifndef IBUS
 extern void ISR_SIN0();
 extern void ISR_SIN1();
+#endif
 
 // Servo Calculation functions
 extern short Servo_PWM_to_Pct(unsigned int PWMlength, short OldPctVal, byte DeadZone);
 extern short Servo_PWM_to_Deg(unsigned int PWMlength, short OldDegVal);
 
 // Variable declarations
+#ifndef IBUS
 extern volatile unsigned short SIN0_uS;                    // length of PWM signal in µS
 extern volatile unsigned long SIN0_LAST_UPDATE; // millis() of last servo PWM decode
 extern volatile unsigned long SIN0_RE_micros;   // micros() of rising edge (for PWM length measurement in ISR)
@@ -39,5 +42,6 @@ extern volatile unsigned long SIN1_RE_micros;
 
 extern volatile boolean b_SIN0_newPos; // new PWM signal decoded?
 extern volatile boolean b_SIN1_newPos;
+#endif
 
 #endif //SRVDEC_H

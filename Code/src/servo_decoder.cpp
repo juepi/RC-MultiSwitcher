@@ -6,6 +6,7 @@
 #include "hardware-config.h"
 #include "servo_decoder.h"
 
+#ifndef IBUS
 // Variable definitions
 volatile unsigned short SIN0_uS = 0;         // length of PWM signal in µS
 volatile unsigned long SIN0_LAST_UPDATE = 0; // millis() of last servo PWM decode
@@ -60,6 +61,7 @@ void ISR_SIN1()
         }
     }
 }
+#endif // !IBUS
 
 short Servo_PWM_to_Pct(unsigned int PWMlength, short OldPctVal, byte DeadZone)
 {

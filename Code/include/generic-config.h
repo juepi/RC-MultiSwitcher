@@ -8,7 +8,7 @@
 
 // Firmware Information
 #define FIRMWARE_NAME "RC-MultiSwitcher"
-#define FIRMWARE_VERSION "1.1.2"
+#define FIRMWARE_VERSION "1.2.0"
 
 // Serial Output configuration
 #define BAUD_RATE 115200
