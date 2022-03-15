@@ -24,7 +24,7 @@ PWMServo ServOut0;
 #endif
 
 // Initialize Switched Output Array
-short Switches[6][2] = {{SW0,0},{SW1,0},{SW2,0},{SW3,0},{SW4,0},{SW5,0}};
+int Switches[6][2] = {{SW0,0},{SW1,0},{SW2,0},{SW3,0},{SW4,0},{SW5,0}};
 
 // Initialize Servo Arrays
 // OUTPUTS centered/neutral by default

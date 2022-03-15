@@ -90,7 +90,7 @@ extern PWMServo ServOut2;
 // 2D Array for switched Outputs
 // First Row: PIN of switch Element 0 = SW0, Element 1 =SW1 ...
 // Second Row: OUTPUT-State of switch (0..100% -> PWM!)
-extern short Switches[6][2];
+extern int Switches[6][2];
 
 // Create some human readable Switch Aliases
 #define PUMP 0

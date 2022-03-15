@@ -137,25 +137,21 @@ void loop()
       }
 #endif
       // Set SW output states
-      // make sure FETs are full OFF (0-5%) or ON (95-100%) and PWM in between
-      DEBUG_PRINTLN("PWM DS: " + String(Switches[i][SW_STATE]));
+      // make sure FETs are full OFF (0-2%), ON (98-100%) or PWM in between
+      // This might be important when feeding Switches from a channel which does not reach full end positions -> tweak as required
       switch (Switches[i][SW_STATE])
       {
-      case 0 ... 5:
-        analogWrite(Switches[i][SW_PIN], 0);
-        DEBUG_PRINTLN("SW: LOW");
+      case 0 ... 2:
+        Switches[i][SW_STATE] = 0;
         break;
-      case 6 ... 94:
-        int temp = map(Switches[i][SW_STATE], 0, 100, 0, 4095);
-        analogWrite(Switches[i][SW_PIN], temp);
-        DEBUG_PRINTLN("SW: " + String(temp));
+      case 3 ... 97:
         break;
-      case 95 ... 100:
-        //TODO: Buggy, we never get here! :-/
-        analogWrite(Switches[i][SW_PIN], 4096);
-        DEBUG_PRINTLN("SW: HIGH");
+      case 98 ... 100:
+        Switches[i][SW_STATE] = 100;
         break;
       }
+      // write to Output
+      analogWrite(Switches[i][SW_PIN], map(Switches[i][SW_STATE], 0, 100, 0, 4096));
     }
 
     // Debug output (added here to avoid too much load on the serial port):
@@ -165,7 +161,7 @@ void loop()
       DEBUG_PRINTLN("iBUS disconnected!");
     }
 #endif
-    // DEBUG_PRINT("CH5:\t" + String(SIN_POS[RX_CH5][POS]) + "\t\t CH6:\t" + String(SIN_POS[RX_CH6][POS]) + "\t\t SOUT0:\t" + String(SOUT_POS[0]));
-    // DEBUG_PRINTLN("\t   SW0: " + String(Switches[0][SW_STATE]) + "  SW1: " + String(Switches[1][SW_STATE]) + "  SW2: " + String(Switches[2][SW_STATE]) + "  SW3: " + String(Switches[3][SW_STATE]) + "  SW4: " + String(Switches[4][SW_STATE]) + "  SW5: " + String(Switches[5][SW_STATE]));
+    DEBUG_PRINT("CH5:\t" + String(SIN_POS[RX_CH5][POS]) + "\t\t CH6:\t" + String(SIN_POS[RX_CH6][POS]) + "\t\t SOUT0:\t" + String(SOUT_POS[0]));
+    DEBUG_PRINTLN("\t   SW0: " + String(Switches[0][SW_STATE]) + "  SW1: " + String(Switches[1][SW_STATE]) + "  SW2: " + String(Switches[2][SW_STATE]) + "  SW3: " + String(Switches[3][SW_STATE]) + "  SW4: " + String(Switches[4][SW_STATE]) + "  SW5: " + String(Switches[5][SW_STATE]));
   }
 }

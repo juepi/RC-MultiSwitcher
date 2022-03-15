@@ -12,7 +12,7 @@ void Process_RX_CH5()
     if (SIN_POS[RX_CH5][STAT] == 1)
     {
         // Configure outputs according to current position
-        switch (SIN_POS[RX_CH5][POS])
+        switch ((int)SIN_POS[RX_CH5][POS])
         {
         case 0 ... 30:
             // Everything OFF
@@ -79,7 +79,7 @@ void Process_RX_CH6()
     if (SIN_POS[RX_CH6][STAT] == 2)
     {
         // Configure winch output according to current position
-        switch (SIN_POS[RX_CH6][POS])
+        switch ((int)SIN_POS[RX_CH6][POS])
         {
         case -100 ... - 30:
             // Map "reverse" input to 0..89°

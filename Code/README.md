@@ -19,6 +19,10 @@ Some documentation available in comments which should help you get things up and
 
 ## Changelog
 
+### v1.2.1
+- Tweaked PWM MOSFET-output code
+- Verified PWM mode for switch outputs - SW0 and SW1 run at 8.8kHz (`hardware-config.h`), the rest at 50Hz (PWMServo)
+
 ### v1.2.0
 - Added FlySky iBUS support (enable in `platformio.ini`, configure in `iBUS.h`)
 
