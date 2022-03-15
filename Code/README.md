@@ -7,7 +7,7 @@ My intention for this project was to be able to use a single RC channel for mult
 ## Requirements
 Whilst the program (POC) has been tested and runs on an Nano 3.0 clone, you may want to use something stronger like a [Teensy 3.1+ board](https://www.pjrc.com/teensy/teensy31.html) for this. The Nano causes some jitter on the servo outputs, i assume due to the interrupts used to measure the PWM signal of the 2 servo input channels interfering with the servo library code.  
 If you choose a different microcontroller, my recommendation is to make sure that it is 5V tolerant on the digital inputs (just to be sure). Also remember that you'll require inputs that support interrupts for decoding the receivers PWM signals.  
-**Note:** When running on a Teensy 3.x, you can also use a serial bus interface (like iBus for FlySky) on Servo Input 0 to connect your receiver, as this will connect to the HW serial RX3 pin of a compatible Teensy 3.x MCU.
+**Note:** When running on a Teensy 3.x, you can also use a serial bus interface (like iBus for FlySky) on Servo Input 0 to connect your receiver, as this will connect to the HW serial RX3 pin.
 
 ## Status
 Some documentation available in comments which should help you get things up and running.  
@@ -23,7 +23,7 @@ Some documentation available in comments which should help you get things up and
 - Added FlySky iBUS support (enable in `platformio.ini`, configure in `iBUS.h`)
 
 ### v1.1.2
-- Added SW-output testing mode
+- Added SW-output testing mode (can be anabled in `platformio.ini`)
 - Fixed copy/paste error
 
 ### v1.1.1

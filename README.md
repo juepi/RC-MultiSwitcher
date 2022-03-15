@@ -2,7 +2,7 @@
 Hard- and software project to handle several RC (PWM) Servo In- and outputs as well as switched Outputs for LEDs and other loads.
 
 ## Purpose
-My intention for this project was to be able to use a single RC channel for multiple purposes, like switching headlights, flashing lights, siren etc on my RC model. To be more flexible, 4 RC channels can be decoded (simultaneously) along with 4 servo output channels have been added. The board additionally supports 6 N-channel MOSFET outputs, each output supports an optional free-wheeling diode for inductive loads.
+My intention for this project was to be able to use a single RC channel for multiple purposes, like switching headlights, flashing lights, siren etc on my RC model. To be more flexible, the board provides 4 PWM servo inputs as well as 4 outputs, which can be used simultaneously. It additionally supports 6 N-channel MOSFET outputs, supporting an optional free-wheeling diode for inductive loads on every output.
 
 ## Requirements
 Whilst the program has been tested and runs on an Nano 3.0 clone, you may want to use something stronger like a [Teensy 3.1+ board](https://www.pjrc.com/teensy/teensy31.html) for this. The Nano causes some jitter on the servo outputs, i assume due to the interrupts used to measure the PWM signal of the 2 servo input channels interfering with the servo library code.  
