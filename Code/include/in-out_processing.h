@@ -6,6 +6,9 @@
 
 // Processing Servo Inputs to switched- and servo-outputs
 
+#ifdef IBUS
+extern void Process_RX_CH3();
+#endif
 extern void Process_RX_CH5();
 extern void Process_RX_CH6();
 

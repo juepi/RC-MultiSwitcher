@@ -96,7 +96,7 @@ extern int Switches[6][2];
 #define PUMP 0
 #define HEADLIGHTS 1
 #define BLUELAMP 2
-#define SIRENE 3
+#define SIREN 3
 #define SW_PIN 0
 #define SW_STATE 1
 
@@ -112,16 +112,24 @@ extern short SOUT_POS[1];
 // First row: measured servo position; second row: servo signal status (0=SignalInvalid;1=Degrees;2=Percent)? -> SignalInvalid is set if input is not updated within SRV_TIMEOUT
 // Usage: Element 0 = SIN0, Element 1 = SIN1 ...
 // we currently use 2 out of 4 servo inputs
-extern short SIN_POS[2][2];
+extern short SIN_POS[6][2];
 
 // Create some human readable Servo Input Aliases
-#define RX_CH5 0
-#define RX_CH6 1
+#define RX_CH1 0
+#define RX_CH2 1
+#define RX_CH3 2
+#define RX_CH4 3
+#define RX_CH5 4
+#define RX_CH6 5
 #define POS 0
 #define STAT 1
 #define STAT_ERR 0
 #define STAT_DEG 1
 #define STAT_PCT 2
+
+// Pump motor requires minimum PWM duty cycle to start running. Also define max
+#define PUMP_MIN_PWM 60
+#define PUMP_MAX_PWM 100
 
 // Hardware setup function
 extern void hw_setup();

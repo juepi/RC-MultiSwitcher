@@ -2,7 +2,7 @@
 PlatformIO based project to handle several RC (PWM) Servo In- and outputs as well as switched Outputs for LEDs and other loads.
 
 ## Purpose
-My intention for this project was to be able to use a single RC channel for multiple purposes, like switching headlights, flashing lights, sirene etc on my RC model. To be more flexible, 4 RC channels can be decoded (simultaneously), whilst 4 PWM output channels have been added along with some digital outputs. FlySky iBUS decoding has also been included to minimize cabling and get a max of 14 channels from your receiver.
+My intention for this project was to be able to use a single RC channel for multiple purposes, like switching headlights, flashing lights, SIREN etc on my RC model. To be more flexible, 4 RC channels can be decoded (simultaneously), whilst 4 PWM output channels have been added along with some digital outputs. FlySky iBUS decoding has also been included to minimize cabling and get a max of 14 channels from your receiver.
 
 ## Requirements
 Whilst the program (POC) has been tested and runs on an Nano 3.0 clone, you may want to use something stronger like a [Teensy 3.1+ board](https://www.pjrc.com/teensy/teensy31.html) for this. The Nano causes some jitter on the servo outputs, i assume due to the interrupts used to measure the PWM signal of the 2 servo input channels interfering with the servo library code.  
@@ -19,9 +19,13 @@ Some documentation available in comments which should help you get things up and
 
 ## Changelog
 
+### v1.2.2
+- Change for personal usage; moved siren to CH3 (iBUS only)
+- adopted pump PWM control
+
 ### v1.2.1
 - Tweaked PWM MOSFET-output code
-- Verified PWM mode for switch outputs - SW0 and SW1 run at 8.8kHz (`hardware-config.h`), the rest at 50Hz (PWMServo)
+- Verified PWM mode for switch outputs - SW0 and SW1 run at 8.8kHz (`hardware-config.h`), all other at 50Hz (PWMServo)
 
 ### v1.2.0
 - Added FlySky iBUS support (enable in `platformio.ini`, configure in `iBUS.h`)
@@ -32,7 +36,7 @@ Some documentation available in comments which should help you get things up and
 
 ### v1.1.1
 - Fixed some copy/paste errors
-- Adopted in/out-processing for new sirene (does not require Servo output)
+- Adopted in/out-processing for new siren (does not require Servo output)
 - Changed `analogWrite` handling of Switched outputs; PWMServo library sets PWM to 12bit resolution (system wide)
 - optionally set PWM frequency for SW0 and SW1 (FTM1 timer) in `hardware-config.h`
 

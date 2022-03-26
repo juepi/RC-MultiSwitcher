@@ -73,11 +73,15 @@ void loop()
   if (iBUS_VALID)
   {
     // IBus_readChan reports current state in µs, just as our servo decoder
-    SIN_POS[RX_CH5][POS] = Servo_PWM_to_Deg(iBus_readChan(IBUS_CH_5), SIN_POS[RX_CH5][POS]);
+    SIN_POS[RX_CH3][POS] = Servo_PWM_to_Deg(iBus_readChan(RX_CH3), SIN_POS[RX_CH3][POS]);
+    SIN_POS[RX_CH3][STAT] = 1; // We've decoded to degrees
+    // Process Input / Output mapping
+    Process_RX_CH3();
+    SIN_POS[RX_CH5][POS] = Servo_PWM_to_Deg(iBus_readChan(RX_CH5), SIN_POS[RX_CH5][POS]);
     SIN_POS[RX_CH5][STAT] = 1; // We've decoded to degrees
     // Process Input / Output mapping
     Process_RX_CH5();
-    SIN_POS[RX_CH6][POS] = Servo_PWM_to_Pct(iBus_readChan(IBUS_CH_6), SIN_POS[RX_CH6][POS], DEFAULT_DEAD_ZONE);
+    SIN_POS[RX_CH6][POS] = Servo_PWM_to_Pct(iBus_readChan(RX_CH6), SIN_POS[RX_CH6][POS], DEFAULT_DEAD_ZONE);
     SIN_POS[RX_CH6][STAT] = 2; // We've decoded to percent
     // Process Input / Output mapping
     Process_RX_CH6();
@@ -87,8 +91,10 @@ void loop()
   }
   else
   {
-    SIN_POS[RX_CH5][STAT] = 0; // iBUS disconnected, channels invalid!
-    SIN_POS[RX_CH6][STAT] = 0;
+    for (int i = 0; i <= 5; i++)
+    {
+      SIN_POS[i][STAT] = 0; // iBUS disconnected, channels invalid!
+    }
 #ifdef ONBOARD_LED
     digitalWrite(LED, LEDON);
 #endif

@@ -31,7 +31,7 @@ int Switches[6][2] = {{SW0,0},{SW1,0},{SW2,0},{SW3,0},{SW4,0},{SW5,0}};
 short SOUT_POS[1] = {90};
 
 // INPUTS set to invalid by default
-short SIN_POS[2][2] = {{0,0},{0,0}};
+short SIN_POS[6][2] = {{0,0},{0,0},{0,0},{0,0},{0,0},{0,0}};
 
 // Hardware Setup function (called in setup loop)
 void hw_setup()
