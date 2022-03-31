@@ -97,6 +97,7 @@ extern int Switches[6][2];
 #define HEADLIGHTS 1
 #define BLUELAMP 2
 #define SIREN 3
+#define FOGLIGHTS 4
 #define SW_PIN 0
 #define SW_STATE 1
 

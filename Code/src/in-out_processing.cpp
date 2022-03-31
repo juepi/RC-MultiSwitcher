@@ -42,27 +42,31 @@ void Process_RX_CH5()
         case 0 ... 30:
             // Everything OFF
             Switches[HEADLIGHTS][SW_STATE] = 0;
+            Switches[FOGLIGHTS][SW_STATE] = 0;
             Switches[BLUELAMP][SW_STATE] = 0;
             Switches[PUMP][SW_STATE] = 0;
             break;
 
         case 31 ... 60:
-            // Only Headlights ON
+            // Only Headlights and Foglights ON
             Switches[HEADLIGHTS][SW_STATE] = 100;
+            Switches[FOGLIGHTS][SW_STATE] = 100;
             Switches[BLUELAMP][SW_STATE] = 0;
             Switches[PUMP][SW_STATE] = 0;
             break;
 
         case 61 ... 90:
-            // Headlights and Blue lamp
+            // front lights and Blue lamp
             Switches[HEADLIGHTS][SW_STATE] = 100;
+            Switches[FOGLIGHTS][SW_STATE] = 100;
             Switches[BLUELAMP][SW_STATE] = 100;
             Switches[PUMP][SW_STATE] = 0;
             break;
 
         case 91 ... 180:
-            // Headlights, Blue lamp and Pump
+            // front lights, Blue lamp and Pump
             Switches[HEADLIGHTS][SW_STATE] = 100;
+            Switches[FOGLIGHTS][SW_STATE] = 100;
             Switches[BLUELAMP][SW_STATE] = 100;
             // Map pump power according to RX_CH5 position
             Switches[PUMP][SW_STATE] = (short)map(SIN_POS[RX_CH5][POS], 91, 180, PUMP_MIN_PWM, PUMP_MAX_PWM);
@@ -71,6 +75,7 @@ void Process_RX_CH5()
         default:
             // Unhandled position, All off
             Switches[HEADLIGHTS][SW_STATE] = 0;
+            Switches[FOGLIGHTS][SW_STATE] = 0;
             Switches[BLUELAMP][SW_STATE] = 0;
             Switches[PUMP][SW_STATE] = 0;
             break;
@@ -80,6 +85,7 @@ void Process_RX_CH5()
     {
         // Servo INPUT signal invalid, turn off everything
         Switches[HEADLIGHTS][SW_STATE] = 0;
+        Switches[FOGLIGHTS][SW_STATE] = 0;
         Switches[BLUELAMP][SW_STATE] = 0;
         Switches[PUMP][SW_STATE] = 0;
     }
