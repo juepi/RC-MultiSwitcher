@@ -20,7 +20,7 @@ Some documentation available in comments which should help you get things up and
 ## Changelog
 
 ### v1.2.2
-- Change for personal usage; moved siren to CH3 (iBUS only)
+- Change for personal usage; moved siren to CH3 (iBUS only); added foglights
 - adopted pump PWM control
 
 ### v1.2.1
